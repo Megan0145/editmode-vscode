@@ -10,14 +10,14 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:editmode.helloWorld"
+		"onCommand:editmode.createChunk"
 	],
 	"main": "./extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "editmode.helloWorld",
-				"title": "Hello World"
+				"command": "editmode.createChunk",
+				"title": "EditMode: Create Chunk"
 			}
 		]
 	},
