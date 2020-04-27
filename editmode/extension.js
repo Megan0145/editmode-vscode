@@ -34,27 +34,40 @@ function activate(context) {
       vscode.workspace
         .openTextDocument(`${vscode.workspace.rootPath}/em.config.json`)
         .then((doc) => {
-          let settings = JSON.parse(doc.getText());
-		  console.log(settings);
-		  
+          let settings = JSON.parse(doc.getText()); 
           let data = {
             bit: {
               content: text,
             },
             authentication_token: settings.em_authentication_token,
 		  };
-		  let params = Buffer.from(`${data}`, 'utf-8');
-		  
-		  axios.post("https://editmode.app/projects/prj_c5rcsvTmf2UA/chunks", params)
-		  .then(res=> console.log(res))
-		  .catch(err=> console.log(err))
-
+		
+		axios({
+			method: 'post',
+			url: 'https://www.editmode.app/api/v1/bits',
+			data: data,
+			headers: {
+				'Content-Type': 'application/json',
+				'User-Agent': 'Mozilla/5.0' 
+			}
+		  })
+		  .then(res => {
+			let snippet = settings.em_snippet_templates[settings.em_default_snippet_template];
+			let bit_identifier = res.data.identifier;
+			let bit_content = res.data.bit.content;
+			let bit_label = bit_content.substr(0,10) + "..";
+			snippet = snippet.replace("{identifier}", bit_identifier);
+			snippet = snippet.replace("{label}", bit_label);
+			console.log("New snippet: " + snippet)
+			editor.edit((editBuilder) => {
+				editBuilder.replace(selection, snippet);
+			  });
+		  })
+		  .catch(err => console.log("Fail" + err.message))
         })
         .catch((err) => console.log(err));
 
-      editor.edit((editBuilder) => {
-        editBuilder.replace(selection, `<Chunk />`);
-      });
+
     }
   );
 
