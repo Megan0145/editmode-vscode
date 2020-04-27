@@ -1,65 +1,30 @@
-# editmode README
+## EditMode for Visual Studio Code
 
-This is the README for your extension "editmode". After writing up a brief description, we recommend including the following sections.
+EditMode for VSCode is a simple plugin which adds a keyboard shortcut to your workspace, allowing you to instantly convert content inside to chunks - it will take the text, send it to the Editmode API which returns an identifier, and replace it with a Editmode helper. Used in conjunction with Editmode.js, it allows one to very quickly convert an existing site to be fully editable by anyone in a short space of time.
 
-## Features
+## Installation
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+Install EditMode through Visual Studio Code's Marketplace.
+Just open your extension manager and search for "EditMode".
 
-For example if there is an image subfolder under your extension project workspace:
+## Usage
 
-\!\[feature X\]\(images/feature-x.png\)
+1: Once you have installed and enabled EditMode, create an empty file by the name of "em.config.json" in the root directory of your workspace.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+2: Copy and paste the following into your new file;
 
-## Requirements
+```
+{
+    "em_authentication_token": "<YOUR_TOKEN_HERE>",
+    "em_default_snippet_template": "react",
+    "em_snippet_templates": {
+      "rails_erb": "<%= chunk('{label}','{identifier}') %>",
+      "react": "<Chunk label='{label}' identifier='{identifier}' />"
+    }
+}
+```
+3: Replace the "em_authentication_token" with your own (this will be the authentication token for the particular project that you are working on. You can find this on your EditMode account). You may change the "em_default_snippet_template" from "react" to any of the other options in the "em_snippet_templates" at any time.
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+EditMode is now ready to use!
 
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+Select the text you'd like to replace, open the Command Palette (CMD+SHIFT+P) and select "EditMode: Create Chunk".
