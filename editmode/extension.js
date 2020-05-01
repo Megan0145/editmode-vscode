@@ -52,18 +52,19 @@ function activate(context) {
             },
           })
             .then((res) => {
+              let { identifier, content, chunk_type, collection } = res.data;
               let snippet =
                 settings.em_snippet_templates[
                   settings.em_default_snippet_template
                 ];
-              let bit_identifier = res.data.identifier;
-              let bit_content = res.data.bit.content;
-              let bit_label = bit_content.substr(0, 10) + "..";
-              snippet = snippet.replace("{identifier}", bit_identifier);
-              snippet = snippet.replace("{label}", bit_label);
-              if (settings.em_default_snippet_template === "react") {
-                snippet = snippet.replace("{content}", bit_content);
-              }
+              snippet = snippet.replace("{identifier}", identifier);
+              snippet = snippet.replace("{chunk_type}", chunk_type);
+              snippet = snippet.replace("{content}", content);
+              snippet = snippet.replace("{collection}", collection);
+
+              // if (settings.em_default_snippet_template === "react") {
+              //   snippet = snippet.replace("{content}", bit_content);
+              // }
               console.log("New snippet: " + snippet);
               editor.edit((editBuilder) => {
                 editBuilder.replace(selection, snippet);
@@ -90,7 +91,10 @@ function activate(context) {
 exports.activate = activate;
 
 // this method is called when your extension is deactivated
-function deactivate() {}
+function deactivate() {
+ 
+}
+exports.deactivate = deactivate;
 
 module.exports = {
   activate,
