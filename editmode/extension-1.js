@@ -36,9 +36,7 @@ function activate(context) {
         .then((doc) => {
           let settings = JSON.parse(doc.getText());
           let data = {
-            bit: {
-              content: text,
-            },
+            content: text,
             authentication_token: settings.em_authentication_token,
           };
 
@@ -56,14 +54,12 @@ function activate(context) {
                 settings.em_snippet_templates[
                   settings.em_default_snippet_template
                 ];
-              let bit_identifier = res.data.identifier;
+			  let bit_identifier = res.data.identifier;
+			  //srtip
               let bit_content = res.data.bit.content;
               let bit_label = bit_content.substr(0, 10) + "..";
               snippet = snippet.replace("{identifier}", bit_identifier);
               snippet = snippet.replace("{label}", bit_label);
-              if (settings.em_default_snippet_template === "react") {
-                snippet = snippet.replace("{content}", bit_content);
-              }
               console.log("New snippet: " + snippet);
               editor.edit((editBuilder) => {
                 editBuilder.replace(selection, snippet);
