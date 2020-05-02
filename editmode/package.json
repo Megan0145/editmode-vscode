@@ -1,13 +1,14 @@
 {
   "name": "editmode",
   "displayName": "EditMode",
-  "publisher": "Megan Ennis",
+  "publisher": "MeganEnnis",
   "description": "Create Editmode chunks at the click of a button.",
   "version": "0.0.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/Megan0145/editmode-vscode.git"
   },
+  "icon": "assets/em-logo.png",
   "engines": {
     "vscode": "^1.44.0"
   },
