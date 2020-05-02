@@ -25,7 +25,7 @@ function activate(context) {
 
       // Display a message box to the user
       vscode.window.showInformationMessage("Hello VS CODE from EditMode!");
-      createSnippet()
+      createSnippet();
       var editor = vscode.window.activeTextEditor;
       if (!editor) {
         return; // No open text editor
@@ -34,7 +34,6 @@ function activate(context) {
       // Grab the text user has selected
       let selection = editor.selection;
       let text = editor.document.getText(selection);
-
 
       // Load settings from em.config file
       vscode.workspace
@@ -62,7 +61,7 @@ function activate(context) {
             .then((res) => {
               // Create snippet
               let snippet = createSnippet(settings, res.data);
-    
+
               // Replace text selection in editor with new snippet
               editor.edit((editBuilder) => {
                 editBuilder.replace(selection, snippet);
