@@ -24,17 +24,23 @@ function activate(context) {
 
       // Display a message box to the user
       vscode.window.showInformationMessage("Hello VS CODE from EditMode!");
+
       var editor = vscode.window.activeTextEditor;
       if (!editor) {
         return; // No open text editor
       }
+
+      // Grab the text user has selected
       let selection = editor.selection;
       let text = editor.document.getText(selection);
 
+      // Load settings from em.config file
       vscode.workspace
         .openTextDocument(`${vscode.workspace.rootPath}/em.config.json`)
         .then((doc) => {
           let settings = JSON.parse(doc.getText());
+
+          // Make API call to create new chunk
           let data = {
             bit: {
               content: text,
@@ -53,6 +59,7 @@ function activate(context) {
           })
             .then((res) => {
               let { identifier, content, chunk_type, collection } = res.data;
+              // Grab the default snippet template from settings and replace with chunk data from response
               let snippet =
                 settings.em_snippet_templates[
                   settings.em_default_snippet_template
@@ -62,10 +69,7 @@ function activate(context) {
               snippet = snippet.replace("{content}", content);
               snippet = snippet.replace("{collection}", collection);
 
-              // if (settings.em_default_snippet_template === "react") {
-              //   snippet = snippet.replace("{content}", bit_content);
-              // }
-              console.log("New snippet: " + snippet);
+              // Replace text selection in editor with new snippet
               editor.edit((editBuilder) => {
                 editBuilder.replace(selection, snippet);
               });
@@ -91,9 +95,7 @@ function activate(context) {
 exports.activate = activate;
 
 // this method is called when your extension is deactivated
-function deactivate() {
- 
-}
+function deactivate() {}
 exports.deactivate = deactivate;
 
 module.exports = {
