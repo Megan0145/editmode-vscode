@@ -20,7 +20,8 @@ Just open your extension manager and search for "EditMode".
     "em_snippet_templates": {
       "rails_erb": "<%= chunk('{label}','{identifier}') %>",
       "react": 
-        "<Chunk chunk_type='{chunk_type}' identifier='{identifier}' collection='{collection'>    {content}
+        "<Chunk chunk_type='{chunk_type}' identifier='{identifier}' collection='{collection'>
+           {content}
         </Chunk>"
     }
 }
@@ -30,4 +31,4 @@ Just open your extension manager and search for "EditMode".
 
 EditMode is now ready to use!
 
-Select the text you'd like to replace, open the Command Palette (CMD+SHIFT+P) and select "EditMode: Create Chunk".
+Select the text you'd like to replace and hit CMD+SHIFT+L to convert your content to a chunk. Alternatively, you can open the Command Palette (CMD+SHIFT+P) and select "EditMode: Create Chunk".
