@@ -2,6 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require("vscode");
 const axios = require("axios");
+const createSnippet = require("./utils/createSnippet");
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -24,7 +25,7 @@ function activate(context) {
 
       // Display a message box to the user
       vscode.window.showInformationMessage("Hello VS CODE from EditMode!");
-
+      createSnippet()
       var editor = vscode.window.activeTextEditor;
       if (!editor) {
         return; // No open text editor
@@ -33,6 +34,7 @@ function activate(context) {
       // Grab the text user has selected
       let selection = editor.selection;
       let text = editor.document.getText(selection);
+
 
       // Load settings from em.config file
       vscode.workspace
@@ -58,17 +60,9 @@ function activate(context) {
             },
           })
             .then((res) => {
-              let { identifier, content, chunk_type, collection } = res.data;
-              // Grab the default snippet template from settings and replace with chunk data from response
-              let snippet =
-                settings.em_snippet_templates[
-                  settings.em_default_snippet_template
-                ];
-              snippet = snippet.replace("{identifier}", identifier);
-              snippet = snippet.replace("{chunk_type}", chunk_type);
-              snippet = snippet.replace("{content}", content);
-              snippet = snippet.replace("{collection}", collection);
-
+              // Create snippet
+              let snippet = createSnippet(settings, res.data);
+    
               // Replace text selection in editor with new snippet
               editor.edit((editBuilder) => {
                 editBuilder.replace(selection, snippet);
