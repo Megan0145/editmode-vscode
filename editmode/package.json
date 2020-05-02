@@ -1,6 +1,6 @@
 {
   "name": "editmode",
-  "displayName": "EditMode",
+  "displayName": "Editmode",
   "publisher": "MeganEnnis",
   "description": "Create Editmode chunks at the click of a button.",
   "version": "0.0.1",
@@ -23,7 +23,7 @@
     "commands": [
       {
         "command": "editmode.createChunk",
-        "title": "EditMode: Create Chunk"
+        "title": "Editmode: Create Chunk"
       }
     ],
     "keybindings": [
