@@ -1,7 +1,8 @@
 {
   "name": "editmode",
   "displayName": "EditMode",
-  "description": "EditMode for VSCode is a simple plugin which adds a keyboard shortcut to your workspace, allowing you to instantly convert content inside to chunks - it will take the text, send it to the Editmode API which returns an identifier, and replace it with a Editmode helper. Used in conjunction with Editmode.js, it allows one to very quickly convert an existing site to be fully editable by anyone in a short space of time.",
+  "publisher": "Megan Ennis",
+  "description": "Create Editmode chunks at the click of a button.",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.44.0"
@@ -19,7 +20,14 @@
         "command": "editmode.createChunk",
         "title": "EditMode: Create Chunk"
       }
-    ]
+	], 
+	"keybindings": [
+		{
+			"command": "editmode.createChunk",
+			"key": "ctrl+shift+l",
+			"mac": "cmd+shift+l"
+		}
+	]
   },
   "scripts": {
     "lint": "eslint .",
