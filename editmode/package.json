@@ -4,6 +4,10 @@
   "publisher": "Megan Ennis",
   "description": "Create Editmode chunks at the click of a button.",
   "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Megan0145/editmode-vscode.git"
+  },
   "engines": {
     "vscode": "^1.44.0"
   },
@@ -20,14 +24,14 @@
         "command": "editmode.createChunk",
         "title": "EditMode: Create Chunk"
       }
-	], 
-	"keybindings": [
-		{
-			"command": "editmode.createChunk",
-			"key": "ctrl+shift+l",
-			"mac": "cmd+shift+l"
-		}
-	]
+    ],
+    "keybindings": [
+      {
+        "command": "editmode.createChunk",
+        "key": "ctrl+shift+l",
+        "mac": "cmd+shift+l"
+      }
+    ]
   },
   "scripts": {
     "lint": "eslint .",
