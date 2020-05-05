@@ -20,7 +20,7 @@ Just open your extension manager and search for "Editmode".
     "em_snippet_templates": {
       "rails_erb": "<%= chunk('{label}','{identifier}') %>",
       "react": 
-        "<Chunk chunk_type='{chunk_type}' identifier='{identifier}' collection='{collection'>
+        "<Chunk chunk_type='{chunk_type}' identifier='{identifier}' collection='{collection}'>
            {content}
         </Chunk>"
     }
