@@ -3,7 +3,7 @@
   "displayName": "Editmode",
   "publisher": "MeganEnnis",
   "description": "Create Editmode chunks at the click of a button.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/Megan0145/editmode-vscode.git"
